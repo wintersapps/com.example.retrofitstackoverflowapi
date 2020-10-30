@@ -11,7 +11,7 @@
         android:id="@+id/questionLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
+        android:layout_margin="10dp"
         app:cardCornerRadius="4dp"
         android:clickable="true"
         android:focusable="true"
@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="75dp"
             android:orientation="vertical"
-            android:padding="4dp">
+            android:padding="5dp">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/titleTextView"
@@ -32,18 +32,16 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="bottom">
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/scoreTextView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:paddingEnd="8dp"
-                    android:paddingStart="8dp"
-                    android:visibility="gone"
-                    android:text="@string/score"
+                    android:text="@{question.score}"
                     style="@style/Score"/>
 
                 <com.google.android.material.textview.MaterialTextView
@@ -52,8 +50,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:visibility="gone"
-                    android:text="@string/date"
+                    android:convertDateToString="@{question.date}"
                     style="@style/Date"/>
             </LinearLayout>
         </LinearLayout>

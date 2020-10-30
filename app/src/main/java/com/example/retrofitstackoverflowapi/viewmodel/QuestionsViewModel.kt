@@ -15,8 +15,20 @@ class QuestionsViewModel : ViewModel() {
     val loading = MutableLiveData<Boolean>()
     val error = MutableLiveData<String>()
 
-    fun getQuestions() {
-        StackOverflowService.api.getQuestions(1)
+    var page = 0
+
+    fun getNextPage(){
+        page++
+        getQuestions()
+    }
+
+    fun getFirstPage(){
+        page = 1
+        getQuestions()
+    }
+
+    private fun getQuestions() {
+        StackOverflowService.api.getQuestions(page)
                 .enqueue(object : Callback<ResponseWrapper<Question>> {
                     override fun onResponse(call: Call<ResponseWrapper<Question>>,
                                             response: Response<ResponseWrapper<Question>>) {
