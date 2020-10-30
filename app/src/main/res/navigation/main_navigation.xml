@@ -9,5 +9,20 @@
         android:id="@+id/questionsFragment"
         android:name="com.example.retrofitstackoverflowapi.view.fragments.QuestionsFragment"
         android:label="Questions"
-        tools:layout="@layout/fragment_questions" />
+        tools:layout="@layout/fragment_questions" >
+        <action
+            android:id="@+id/action_go_to_answers"
+            app:destination="@id/answersFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/answersFragment"
+        android:name="com.example.retrofitstackoverflowapi.view.fragments.AnswersFragment"
+        android:label="Answers"
+        tools:layout="@layout/fragment_answers" >
+        <argument
+            android:name="question"
+            app:argType="com.example.retrofitstackoverflowapi.model.Question" />
+    </fragment>
 </navigation>

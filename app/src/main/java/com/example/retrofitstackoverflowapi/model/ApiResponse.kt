@@ -1,6 +1,8 @@
 package com.example.retrofitstackoverflowapi.model
 
 import android.os.Build
+import android.os.Parcel
+import android.os.Parcelable
 import android.text.Html
 import android.text.format.DateFormat
 import androidx.databinding.BindingAdapter
@@ -21,7 +23,35 @@ data class Question(
 
         @SerializedName("creation_date")
         val date: Long?
-)
+) : Parcelable {
+    constructor(parcel: Parcel) : this(
+        parcel.readValue(Int::class.java.classLoader) as? Int,
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readValue(Long::class.java.classLoader) as? Long
+    )
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeValue(questionId)
+        parcel.writeString(title)
+        parcel.writeString(score)
+        parcel.writeValue(date)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Question> {
+        override fun createFromParcel(parcel: Parcel): Question {
+            return Question(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Question?> {
+            return arrayOfNulls(size)
+        }
+    }
+}
 
 fun MaterialTextView.convertHtml(title: String?){
     if (Build.VERSION.SDK_INT >= 24)

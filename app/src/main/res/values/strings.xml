@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">Retrofit StackOverflowApi</string>
     <string name="an_error_occurred_while_loading_questions">An error occurred while loading questions</string>
-    <string name="title">Title</string>
-    <string name="score">Score</string>
-    <string name="date">Date</string>
+    <string name="an_error_occurred_while_loading_answers">An error occurred while loading answers</string>
 </resources>

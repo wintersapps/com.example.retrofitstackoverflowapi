@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="question"
+            type="com.example.retrofitstackoverflowapi.model.Question"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.fragments.AnswersFragment">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/questionScoreTextView"
+            style="@style/Score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:padding="8dp"
+            android:text="@{question.score}"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/questionDateTextView"
+            style="@style/Date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:padding="8dp"
+            android:convertDateToString="@{question.date}"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/questionTitleTextView"
+            style="@style/Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/questionScoreTextView"
+            android:gravity="center_horizontal"
+            android:convertHtmlToText="@{question.title}"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/answersRecyclerView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/questionTitleTextView"
+            android:layout_marginTop="4dp"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/loadingErrorTextView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/questionTitleTextView"
+            android:visibility="gone"
+            android:gravity="center"
+            android:text="@string/an_error_occurred_while_loading_answers"/>
+
+        <ProgressBar
+            android:id="@+id/loadingAnswersProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/questionTitleTextView"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -14,7 +14,8 @@ import com.example.retrofitstackoverflowapi.viewmodel.QuestionsViewModel
 
 class QuestionsFragment : Fragment() {
 
-    private lateinit var binding: FragmentQuestionsBinding
+    private var _binding: FragmentQuestionsBinding? = null
+    private val binding get() = _binding!!
     private lateinit var viewModel: QuestionsViewModel
     private val questionsAdapter = QuestionsAdapter(arrayListOf())
     private lateinit var lm: LinearLayoutManager
@@ -23,7 +24,7 @@ class QuestionsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentQuestionsBinding.inflate(inflater, container, false)
+        _binding = FragmentQuestionsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -61,6 +62,12 @@ class QuestionsFragment : Fragment() {
             binding.loadingQuestionsProgressBar.visibility = View.VISIBLE
         }
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun observeViewModel(){
         viewModel.questionsResponse.observe(viewLifecycleOwner, { items ->
             items?.let {
