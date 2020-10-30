@@ -3,15 +3,14 @@ package com.example.retrofitstackoverflowapi.model
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class StackOverflowService {
+object StackOverflowService {
 
-    private val baseUrl = "https://api.stackexchange.com/"
+    private const val baseUrl = "https://api.stackexchange.com/"
 
-    private val api = Retrofit.Builder()
+    val api = Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(StackOverflowApi::class.java)
-
 
 }
