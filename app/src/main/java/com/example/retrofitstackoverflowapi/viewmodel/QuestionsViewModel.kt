@@ -28,7 +28,7 @@ class QuestionsViewModel : ViewModel() {
     }
 
     private fun getQuestions() {
-        StackOverflowService.api.getQuestions(page)
+        StackOverflowService.getQuestions(page)
                 .enqueue(object : Callback<ResponseWrapper<Question>> {
                     override fun onResponse(call: Call<ResponseWrapper<Question>>,
                                             response: Response<ResponseWrapper<Question>>) {

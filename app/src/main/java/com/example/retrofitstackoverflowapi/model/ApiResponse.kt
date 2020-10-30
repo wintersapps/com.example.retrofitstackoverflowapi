@@ -53,6 +53,32 @@ data class Question(
     }
 }
 
+data class Answer(
+    @SerializedName("answer_id")
+    val answerId: Int?,
+
+    @SerializedName("is_accepted")
+    val isAccepted: Boolean?,
+
+    val score: String?,
+
+    @SerializedName("creation_date")
+    val date: Long?
+){
+    override fun toString() =
+        "$answerId - $score - ${getDate(date)} - ${if (isAccepted == true) "ACCEPTED" else "NOT ACCEPTED"}"
+}
+
+fun getDate(timestamp: Long?): String{
+    var time = ""
+    timestamp?.let {
+        val cal = Calendar.getInstance()
+        cal.timeInMillis = it * 1000
+        time = DateFormat.format("dd-MM-yyyy hh:mm:ss", cal).toString()
+    }
+    return time
+}
+
 fun MaterialTextView.convertHtml(title: String?){
     if (Build.VERSION.SDK_INT >= 24)
         this.text = Html.fromHtml(title, Html.FROM_HTML_MODE_LEGACY).toString()
